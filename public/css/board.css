@@ -1,0 +1,652 @@
+/**
+ * Primary styles
+ *
+ * Author: http://supersteil.com
+*/
+
+figure,
+article,
+section,
+body {
+  margin: 0;
+}
+
+html {
+  width: 1850px;
+  height: 1020px;
+  background: #333 url(../img/body_bg.jpg) repeat;
+  padding: 30px 35px;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  font: 13px/1.231 sans-serif;
+}
+
+/* basecamp content */
+#basecamp_holder {
+  display: block;
+  height: 807px;
+  width: 1180px;
+  margin: 0;
+  padding: 0;
+  float: left;
+  color: #fff;
+}
+
+#basecamp {
+  position: block;
+  height: 975px;
+  width: 1180px;
+  margin: -15px 0 0 0;
+  padding: 0;
+}
+
+#bc_loading {
+  background: url(../img/basecamp_collecting_data.gif) no-repeat;
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  display: block;
+  top: 310px;
+  left: 400px;
+}
+
+#basecamp-projects {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#basecamp-projects .basecamp_project {
+  width: 100%;
+  height: 55px;
+  margin: 14px 0 0 0;
+  display: block;
+  opacity: 0;
+}
+
+#basecamp-projects .basecamp_project .project_title {
+  height: 100%;
+  width: 447px;
+  overflow: hidden;
+  float: left;
+  text-transform: uppercase;
+}
+
+#basecamp-projects .basecamp_project .project_title p {
+  font-size: 32px;
+  margin: 8px 20px;
+  width: 410px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#basecamp-projects .basecamp_project .project_title .ring_1 {
+  left: 60px;
+  top: 23px;
+}
+
+#basecamp-projects .basecamp_project .project_title .ring_3 {
+  left: 50%;
+  top: 23px;
+}
+
+#basecamp-projects .basecamp_project .project_title .ring_2 {
+  right: 60px;
+  top: 23px;
+}
+
+#basecamp-projects .basecamp_project .project_timeline {
+  height: 100%;
+  width: 403px;
+  float: left;
+  margin: 0 0 0 10px;
+  position: relative;
+}
+
+#basecamp-projects .basecamp_project .project_timeline p {
+  text-align: right;
+  font-size: 33px;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.6);
+}
+
+#basecamp-projects .basecamp_project .project_timeline .timeline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  width: 294px;
+}
+
+#basecamp-projects .basecamp_project .project_timeline .dateline {
+  width: 100px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#basecamp-projects .basecamp_project .project_timeline .dateline p {
+  width: 18px;
+  float: left;
+  text-align: center;
+  margin: 7px 0 0 0;
+}
+
+#basecamp-projects .basecamp_project .project_timeline .dateline p:first-of-type {
+  margin: 7px 0 0 10px !important;
+}
+
+#basecamp-projects .basecamp_project .project_timeline .dateline p._space {
+  width: 7px !important;
+}
+
+#basecamp-projects .basecamp_project .project_timeline .timeline figure {
+  width: 0;
+  height: 100%;
+  -moz-border-radius-bottomleft: 6px;
+  -moz-border-radius-bottomright: 6px;
+  border-radius: 6px 0 0 6px;
+  background: url(../img/basecamp_project_timeline_yellow.jpg) repeat;
+}
+
+#basecamp-projects .basecamp_project .project_timeline .timeline aside {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 295px;
+  height: 56px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+#basecamp-projects .basecamp_project .project_timeline .dateline[status='yellow'] {
+  background: url(../img/basecamp_project_timeline_yellow.jpg) repeat;
+}
+
+#basecamp-projects .basecamp_project .project_timeline .dateline[status='orange'] {
+  background: url(../img/basecamp_project_timeline_orange.jpg) repeat;
+}
+
+#basecamp-projects .basecamp_project .project_timeline .dateline[status='green'] {
+  background: url(../img/basecamp_project_timeline_green.jpg) repeat;
+}
+
+#basecamp-projects .basecamp_project .project_timeline .dateline[status='red'] {
+  background: url(../img/basecamp_project_timeline_red.jpg) repeat;
+}
+
+#basecamp-projects .basecamp_project .project_timeline .timeline figure[state='100'] {
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+#basecamp-projects .basecamp_project .project_crew {
+  height: 100%;
+  width: 310px;
+  float: right;
+  margin: 0;
+  overflow: hidden;
+}
+
+#basecamp-projects .basecamp_project .project_crew .project_member {
+  height: 54px;
+  width: 54px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  float: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#basecamp-projects .basecamp_project .project_crew .project_member:nth-child(n+2) {
+  margin: 0 0 0 10px;
+}
+
+#basecamp-projects .basecamp_project .project_crew .project_member img {
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+}
+
+#basecamp-projects .basecamp_project .project_crew .project_member .project_member_overlay {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  height: 56px;
+  width: 56px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: inset 2px 3px 3px 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: inset 2px 3px 3px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 2px 3px 3px 1px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/* sidebar content */
+#sidebar {
+  height: 1020px;
+  width: 640px;
+  margin: 0 0 0 30px;
+  float: left;
+  color: #fff;
+}
+
+#sidebar section:nth-child(n+2) {
+  margin-top: 25px;
+}
+
+/* clock */
+#date_holder {
+  width: 100%;
+  height: 253px;
+  overflow: hidden;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  position: relative;
+}
+
+#eta_date_holder {
+  color:white;
+  width: 100%;
+  height: 253px;
+  overflow: hidden;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  position: relative;
+}
+
+#date_overlay {
+  width: 642px;
+  height: 255px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: inset 0 2px 8px 3px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: inset 0 2px 8px 3px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px 3px rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: -1px;
+  left: -1px;
+}
+
+#eta_date_overlay {
+  width: 1850px;
+  height: 255px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: inset 0 2px 8px 3px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: inset 0 2px 8px 3px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px 3px rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: -1px;
+  left: -1px;
+}
+
+#date_fix {
+  width: 641px;
+  height: 255px;
+  display: block;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  background: url(../img/clock_overlay.png) no-repeat;
+}
+
+#eta_date_fix {
+  display:none;
+  width: 1849px;
+  height: 255px;
+
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  background: url(../img/clock_overlay.png) no-repeat;
+}
+
+#date_time {
+  position: absolute;
+  top: -70px;
+  left: -30px;
+  font-size: 280px;
+}
+
+#eta_days, #eta_hours, #eta_minutes, #eta_seconds {
+  position: relative;
+  top: -50px;
+  left: -15px;
+  font-size: 280px;
+
+}
+.eta_sep {
+  font-size: 250px;
+  padding-left:60px;
+}
+
+.eta_caption {
+  font-weight: normal;
+  position: relative;
+  top: -195px;
+  font-size: 52px;
+}
+
+.eta_caption.days {
+  left: 295px;
+}
+
+.eta_caption.hours {
+  left: 615px;
+}
+
+.eta_caption.minutes {
+  left:915px;
+}
+
+.eta_caption.seconds {
+  left: 1255px;
+}
+
+#date_calendar {
+  position: absolute;
+  left: -8px;
+  top: 202px;
+  font-size: 52px;
+}
+
+#eta_date_calendar {
+  position: absolute;
+  left: -8px;
+  top: 202px;
+  font-size: 52px;
+}
+
+#eta_date_time{
+  white-space: nowrap;
+
+}
+
+.clearfix {
+  clear: both;
+}
+
+/* google analytics */
+.google_analytics_holder {
+  height: 285px;
+  border-bottom: 1px solid #5e5e5e;
+  background: url(../img/flipover_hr.png) repeat-x;
+  background-position: 0 68px;
+  position: relative;
+  padding-top: 75px;
+  text-transform: uppercase;
+}
+
+.google_analytics_holder[max="0"] {
+  background: url(../img/no_oauth_ga_placeholder.png) no-repeat;
+  background-size: 639px 361px
+}
+
+.google_analytics_holder[max="0"] * {
+  display: none;
+}
+
+.google_analytics_holder h1 {
+  font-size: 30px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  margin: 0;
+}
+
+.google_analytics_holder article {
+  width: 550px;
+  height: 18px;
+  margin: 14px 0 0 15px;
+  padding-left: 70px;
+  position: relative;
+}
+
+.google_analytics_holder article .a_day {
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 18px;
+  opacity: 0.5;
+}
+
+.google_analytics_holder article .a_day[state='active'] {
+  opacity: 1;
+}
+
+.google_analytics_holder article .mon {
+  background: url(../img/day_mon.png) no-repeat;
+}
+
+.google_analytics_holder article .tue {
+  background: url(../img/day_tue.png) no-repeat;
+}
+
+.google_analytics_holder article .wed {
+  background: url(../img/day_wed.png) no-repeat;
+}
+
+.google_analytics_holder article .thu {
+  background: url(../img/day_thu.png) no-repeat;
+}
+
+.google_analytics_holder article .fri {
+  background: url(../img/day_fri.png) no-repeat;
+}
+
+.google_analytics_holder article .sat {
+  background: url(../img/day_sat.png) no-repeat;
+}
+
+.google_analytics_holder article .sun {
+  background: url(../img/day_sun.png) no-repeat;
+}
+
+.google_analytics_holder article .slider {
+  display: block;
+  height: 15px;
+  width: 0;
+  background: url(../img/google_analytics_bar_pattern.png) repeat;
+  float: left;
+  margin-top: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+}
+
+.google_analytics_holder article p {
+  display: block;
+  float: left;
+  margin: -1px 0 0 14px;
+  font-size: 20px;
+}
+
+.google_analytics_holder .this_week {
+  font-size: 25px;
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+}
+
+.google_analytics_holder .week_avarage {
+  font-size: 25px;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  opacity: 0.5;
+}
+
+.google_analytics_holder .no_aouth {
+  background: url(../img/no_oauth_ga_placeholder.png) no-repeat;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* member birthday */
+#member_birthdays {
+  height: 146px;
+  border-bottom: 1px solid #5e5e5e;
+  font-size: 35px;
+  position: relative;
+  padding-top: 20px;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+#member_birthdays .overlay {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url(../img/flipover_hr.png) repeat-x;
+  background-position: 0 80px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+#member_birthdays section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  font-size: 50px;
+  padding: 55px 0 0 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#member_birthdays article {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 83px;
+  line-height: 90px;
+  display: block;
+}
+
+#member_birthdays article span {
+  position: absolute;
+  display: block;
+}
+
+#member_birthdays article span:nth-child(1) {
+  width: 50px;
+  text-align: right;
+  left: 0;
+}
+
+#member_birthdays article span:nth-child(2) {
+  left: 70px;
+}
+
+#member_birthdays article span:nth-child(3) {
+  left: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  right: 0;
+}
+
+#member_birthdays article:nth-child(1) {
+  top: 0;
+}
+
+#member_birthdays article:nth-child(2) {
+  top: 83px;
+}
+
+#member_birthdays article:nth-child(3) {
+  top: 190px;
+}
+
+#member_birthdays article:nth-child(4) {
+  top: 275px;
+}
+
+#member_birthdays .no-birthdays {
+  padding: 0 5px;
+}
+
+/* twitter feed */
+#twitter_feed {
+  margin-top:10px;
+  height: 146px;
+  border-bottom: 1px solid #5e5e5e;
+  font-size: 22px;
+  padding: 10px 15px;
+  overflow: hidden;
+}
+
+#twitter_feed .tweet {
+  letter-spacing: 1px;
+  line-height: 50px;
+}
+
+#twitter_feed .tweet .tweet_hashtag {
+  color: #999999;
+}
+
+#twitter_feed .tweet .tweet_mention {
+  color: #ffc600;
+}
+
+/* design elements */
+.flipover {
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background: -moz-radial-gradient(circle, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07));
+  background: -webkit-gradient(radial, center center, 0, center center, 460, from(rgba(255, 255, 255, 0.07)), to(rgba(255, 255, 255, 0.07)));
+  background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0));
+  -webkit-box-shadow: inset 0 2px 8px 3px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: inset 0 2px 8px 3px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px 3px rgba(0, 0, 0, 0.8);
+  position: relative;
+  display: block;
+}
+
+.flipover .flipover_overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: -1px;
+  display: block;
+  border-bottom: 1px solid #5e5e5e;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  background: url(../img/flipover_hr.png) repeat-x;
+  background-position: left center;
+}
+
+.flipover_ring {
+  width: 5px;
+  height: 10px;
+  display: block;
+  position: absolute;
+  background: url(../img/flipover_ring.png) no-repeat;
+}

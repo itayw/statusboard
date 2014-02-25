@@ -1,0 +1,51 @@
+@font-face {
+  font-family:"Oswald";
+  src: url('../board-fonts/Oswald.eot');
+  src: local('☺'), url('../board-fonts/Oswald.ttf') format("truetype");
+}
+
+
+@font-face {
+  font-family:"Context";
+  src: url('../board-fonts/context-reprise-ssi.eot');
+  src: local('☺'), url('../board-fonts/context-reprise-ssi.ttf') format("truetype");
+}
+
+@font-face {
+  font-family:"ContextBold";
+  src: url('../board-fonts/context-reprise-ssi-bold.eot');
+  src: local('☺'), url('../board-fonts/context-reprise-ssi-bold.ttf') format("truetype");
+}
+
+@font-face {
+  font-family:"ContextLight";
+  src: url('../board-fonts/context-light-ssi-light.eot');
+  src: local('☺'), url('../board-fonts/context-light-ssi-light.ttf') format("truetype");
+}
+
+@font-face {
+  font-family:"ContextExtraLight";
+  src: url('../board-fonts/context-reprise-light-ssi-extra-light.eot');
+  src: local('☺'), url('../board-fonts/context-reprise-light-ssi-extra-light.ttf') format("truetype");
+}
+
+
+.font-context{
+  font-family: 'Context', Verdana, 'sans-serif';
+}
+
+.font-context-bold{
+  font-family: 'ContextBold', Verdana, 'sans-serif';
+}
+
+.font-context-light{
+  font-family: 'ContextLight', Verdana, 'sans-serif';
+}
+
+.font-context-extra-light{
+  font-family: 'ContextExtraLight', Verdana, 'sans-serif';
+}
+
+.font-oswald{
+  font-family: 'Oswald', Verdana, 'sans-serif';
+}

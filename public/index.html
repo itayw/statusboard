@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html
+    class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"
+    lang="en"><!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>joola StatusBoard</title>
+  <!--<base href="http://statusboard.me/beta/">-->
+  <base href=".">
+  <link rel="stylesheet" href="css/board.css?v3">
+  <link rel="stylesheet" href="css/board-fonts.css?v3">
+  <script src="js/modernizr-1.7.min.js"></script>
+  <style type="text/css"></style>
+
+  <style>
+    #twitter_feed {
+      height: 736px;
+    }
+
+    #twitter_feed .tweet {
+      letter-spacing: normal;
+      line-height: 1;
+    }
+
+    .twitter_feed_wrapper {
+      margin-bottom: 5px;
+    }
+
+    a {
+      color: white;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    table {
+
+    }
+
+    table tr {
+      vertical-align: top;
+    }
+
+    .avatar {
+      vertical-align: top;
+      padding-right: 5px;;
+    }
+
+    .description {
+      font-size: 16px;
+      vertical-align: top;
+    }
+  </style>
+</head>
+
+<body onload="functions();">
+<section id="eta_date_holder">
+
+  <aside class="font-context-bold" id="eta_date_time">
+    <span id="eta_days"></span>
+    <span class="eta_sep">&nbsp;</span>
+    <span id="eta_hours"></span>
+    <span class="eta_sep">&nbsp;</span>
+    <span id="eta_minutes"></span>
+    <span class="eta_sep">&nbsp;</span>
+    <span id="eta_seconds"></span>
+  </aside>
+
+  <aside class="font-context-bold" id="">
+    <span class="eta_caption days">Days</span>
+    <span class="eta_caption hours">Hours</span>
+    <span class="eta_caption minutes">Min.</span>
+    <span class="eta_caption seconds">Sec.</span>
+  </aside>
+  <figure id="eta_date_overlay"></figure>
+  <figure id="eta_date_fix"></figure>
+</section>
+
+<section id="basecamp_holder">
+ 
+  <section id="basecamp-projects">
+    <figure id="bc_loading"></figure>
+  </section>
+</section>
+
+<section id="sidebar">
+  <!-- add PHP for checking positioning -->
+  <!--
+  <section id="date_holder">
+
+    <aside class="font-context-bold" id="date_time">
+                    <span id="date_hours24">
+                    </span>:<span id="date_minutes"></span>
+    </aside>
+    <aside id="date_calendar">
+      <span id="date_weekday" class="font-context-bold">&nbsp;</span>
+      <span id="date_day" class="font-context-light">&nbsp;</span>
+      <span id="date_month" class="font-context-light">&nbsp;</span>
+      <span id="date_year" class="font-context-light">&nbsp;</span>
+    </aside>
+    <figure id="date_overlay"></figure>
+    <figure id="date_fix"></figure>
+  </section>
+
+  <section class="google_analytics_holder flipover" max="00">
+  </section>
+
+  <section id="member_birthdays" class="flipover">
+  </section>
+  -->
+  <section id="twitter_feed" class="flipover">
+  </section>
+</section>
+
+<script type="template" id="template-tweet">
+  <% if(user) { %>
+  <span class="font-context"><%= user.name %></span>:
+  <% } else { %>
+  <span class="font-context"><%= from_user %></span>:
+  <% } %>
+  <span class="tweet font-context-light"><%= text %></span>
+</script>
+
+<script type="template" id="template-projects">
+  <% for(var i = 0; i < 15; i++) { %>
+  <% var project = projects[i]; %>
+  <% if(project !== undefined) { %>
+  <article class="basecamp_project">
+    <section class="project_title flipover">
+      <figure class="flipover_overlay"></figure>
+      <figure class="flipover_ring ring_1"></figure>
+      <figure class="flipover_ring ring_2"></figure>
+      <figure class="flipover_ring ring_3"></figure>
+      <p class="font-oswald"><%= project.name %></p>
+    </section>
+    <section class="project_timeline">
+      <section class="timeline">
+        <figure date="<%= project.deadline %>" state="<%= Math.round(project.completed * 100) %>"></figure>
+        <aside class="flipover"></aside>
+      </section>
+
+      <% if (project.deadline) { %>
+      <%
+      var now = new XDate();
+      var color = 'none';
+
+      if(project.completed === 1) {
+      color = 'green'
+      } else if(project.deadline < now && project.completed !== 1) {
+      color = 'red'
+      } else if(project.deadline !== null && now.diffDays(project.deadline) < 7) {
+      color = 'orange'
+      }
+      %>
+      <aside class="flipover dateline" status="<%= color %>">
+        <% var date = project.deadline.toString('dd-MM'); %>
+        <p class="font-oswald"><%= date[0] %></p>
+
+        <p class="font-oswald"><%= date[1] %></p>
+
+        <p class="font-oswald _space">&nbsp;</p>
+
+        <p class="font-oswald"><%= date[3] %></p>
+
+        <p class="font-oswald"><%= date[4] %></p>
+      </aside>
+      <% } else { %>
+      <aside class="flipover dateline >
+                           <p class=" font-oswald
+      "></p>
+      <p class="font-oswald"></p>
+
+      <p class="font-oswald _space">&nbsp;</p>
+
+      <p class="font-oswald"></p>
+
+      <p class="font-oswald"></p>
+      </aside>
+      <% } %>
+    </section>
+    <section class="project_crew">
+      <% for(var n = 0; n < 5; n++) { %>
+      <aside class="project_member">
+        <figure class="project_member_overlay"></figure>
+        <% if(project.people[n] !== undefined) { %>
+        <img src="<%= project.people[n].avatar_url %>"/>
+        <% } %>
+      </aside>
+      <% } %>
+    </section>
+  </article>
+  <% } else { %>
+  <article class="basecamp_project">
+    <section class="project_title flipover">
+      <figure class="flipover_overlay"></figure>
+      <figure class="flipover_ring ring_1"></figure>
+      <figure class="flipover_ring ring_2"></figure>
+      <figure class="flipover_ring ring_3"></figure>
+      <p class="font-oswald"></p>
+    </section>
+    <section class="project_timeline">
+      <section class="timeline">
+        <figure></figure>
+        <aside class="flipover"></aside>
+      </section>
+      <aside class="flipover dateline"></aside>
+    </section>
+    <section class="project_crew">
+      <aside class="project_member">
+        <figure class="project_member_overlay"></figure>
+      </aside>
+      <aside class="project_member">
+        <figure class="project_member_overlay"></figure>
+      </aside>
+      <aside class="project_member">
+        <figure class="project_member_overlay"></figure>
+      </aside>
+      <aside class="project_member">
+        <figure class="project_member_overlay"></figure>
+      </aside>
+      <aside class="project_member">
+        <figure class="project_member_overlay"></figure>
+      </aside>
+    </section>
+  </article>
+  <% } %>
+  <% } %>
+</script>
+
+
+<script type="template" id="template-birthdays">
+  <% if(people[0] !== undefined && people[0].day_count === 0) { %>
+  <section><span class="font-context"><%= people[0].first_name %></span> <span class="font-context-light"><%= people[0].age %> YEARS OLD!</span>
+  </section>
+  <% } else if(people.length > 0) { %>
+  <% for (var i = 0; i < 2; i++) { %>
+  <% if (people[i] !== undefined) { %>
+  <article><span class="font-context"><%= people[i].day_count %></span><span class="font-context"> days</span><span
+      class="font-context-light">UNTIL <%= people[i].first_name %>'S B'DAY</span></article>
+  <% } %>
+  <% } %>
+  <% } else { %>
+  <article class="no-birthdays">No birthdays available</article>
+  <% } %>
+  <figure class="overlay"></figure>
+</script>
+
+<script type="template" id="template-analytics">
+  <h1 class="font-context"><%= name %> <span class="font-context-extra-light">ANALYTICS</span></h1>
+  <% for (var i = stats.length - 1; i >= 0; i--) { %>
+  <article>
+    <figure class="<%= stats[i].date.toString('ddd').toLowerCase() %> a_day"></figure>
+    <figure class="slider"></figure>
+    <p class="font-context-light"><%= stats[i].count %></p></article>
+  <% } %>
+  <aside class="this_week font-context">THIS WEEK: <span class="font-context-light"><%= weekly_total %></span></aside>
+  <aside class="week_avarage font-context">AVERAGE: <span class="font-context-light"><%= weekly_average %></span>
+  </aside>
+</script>
+
+<script src="js/jquery.js"></script>
+<script>window.jQuery || document.write('<script src="assets/scripts/libs/jquery-1.7.2.min.js"><\/script>');</script>
+<script src="js/jquery-ui-1.8.13.custom.min.js"></script>
+<script src="js/xdate-min.js"></script>
+<script src="js/underscore-min.js"></script>
+<script src="js/jquery.countdown.js"></script>
+<script src="js/board-modules.js"></script>
+<script src="js/board.js"></script>
+
+</body>
+</html>
