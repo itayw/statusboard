@@ -38,7 +38,7 @@ app.get('/targetDate', routes.targetDate);
 
 app.post('/payload', routes.payload);
 
-var server = http.createServer(app).listen(sb.config.port, function () {
+var server = http.createServer(app).listen(process.env.PORT || sb.config.port, function () {
   sb.io = require('socket.io').listen(server);
   console.log('Express server listening on port ' + sb.config.port);
 });
