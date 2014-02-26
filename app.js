@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -7,11 +6,15 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+var sb = require('./lib/statusboard');
 
 var app = express();
 
+sb.init();
+
+
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', sb.config.port);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon(__dirname + '/public/ico/favicon.ico'));
@@ -30,9 +33,12 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/buildTable', routes.buildTable);
+app.get('/targetDate', routes.targetDate);
+
 app.post('/payload', routes.payload);
-app.get('/projects',routes.projects);
-app.get('/nextMilestone',routes.nextMilestone);
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+
+var server = http.createServer(app).listen(sb.config.port, function () {
+  sb.io = require('socket.io').listen(server);
+  console.log('Express server listening on port ' + sb.config.port);
 });

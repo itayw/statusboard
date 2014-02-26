@@ -5,11 +5,12 @@
 
 function functions(){
 
+
   $(window).resize(onResize).resize();
 
   //refresh_google_analytics(true);
   //refresh_birthdays();
-  //refresh_twitter();
+  refresh_twitter();
   setTimeout(function() {refresh_basecamp_projects(true);}, 000);
 
   update_clock(); // let clock set it's own timeout, so it runs each minute

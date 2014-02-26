@@ -253,7 +253,7 @@ body {
 }
 
 #eta_date_holder {
-  color:white;
+  color: white;
   width: 100%;
   height: 253px;
   overflow: hidden;
@@ -299,7 +299,7 @@ body {
 }
 
 #eta_date_fix {
-  display:none;
+  display: none;
   width: 1849px;
   height: 255px;
 
@@ -318,37 +318,39 @@ body {
 
 #eta_days, #eta_hours, #eta_minutes, #eta_seconds {
   position: relative;
-  top: -50px;
-  left: -15px;
+  top: -20px;
+  left: 50px;
   font-size: 280px;
-
+  text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
 }
+
 .eta_sep {
   font-size: 250px;
-  padding-left:60px;
+  padding-left: 60px;
 }
 
 .eta_caption {
   font-weight: normal;
   position: relative;
-  top: -195px;
+  top: -163px;
   font-size: 52px;
+  text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
 }
 
 .eta_caption.days {
-  left: 295px;
+  left: 360px;
 }
 
 .eta_caption.hours {
-  left: 615px;
+  left: 675px;
 }
 
 .eta_caption.minutes {
-  left:915px;
+  left: 975px;
 }
 
 .eta_caption.seconds {
-  left: 1255px;
+  left: 1320px;
 }
 
 #date_calendar {
@@ -365,7 +367,7 @@ body {
   font-size: 52px;
 }
 
-#eta_date_time{
+#eta_date_time {
   white-space: nowrap;
 
 }
@@ -594,7 +596,7 @@ body {
 
 /* twitter feed */
 #twitter_feed {
-  margin-top:10px;
+  margin-top: 10px;
   height: 146px;
   border-bottom: 1px solid #5e5e5e;
   font-size: 22px;

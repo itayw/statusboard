@@ -16,7 +16,7 @@
 
   <style>
     #twitter_feed {
-      height: 736px;
+      height: 730px;
     }
 
     #twitter_feed .tweet {
@@ -80,7 +80,7 @@
 </section>
 
 <section id="basecamp_holder">
- 
+
   <section id="basecamp-projects">
     <figure id="bc_loading"></figure>
   </section>
@@ -112,20 +112,19 @@
   </section>
   -->
   <section id="twitter_feed" class="flipover">
+      <span class="tweet font-context">joola.io StatusBoard</span>
+      <span class="tweet font-context-light">Milestone 'Version 3.4', due on April 2nd.</span>
   </section>
 </section>
 
 <script type="template" id="template-tweet">
-  <% if(user) { %>
-  <span class="font-context"><%= user.name %></span>:
-  <% } else { %>
-  <span class="font-context"><%= from_user %></span>:
-  <% } %>
-  <span class="tweet font-context-light"><%= text %></span>
+  <span class="font-context"><%= data.sender%></span>
+  <span class="tweet font-context-light"><%= data.text %></span>
+  <br/>
 </script>
 
 <script type="template" id="template-projects">
-  <% for(var i = 0; i < 15; i++) { %>
+  <% for(var i = 0; i < 14; i++) { %>
   <% var project = projects[i]; %>
   <% if(project !== undefined) { %>
   <article class="basecamp_project">
@@ -142,44 +141,57 @@
         <aside class="flipover"></aside>
       </section>
 
-      <% if (project.deadline) { %>
       <%
-      var now = new XDate();
-      var color = 'none';
+        var completed = Math.round(project.completed * 100);
 
-      if(project.completed === 1) {
-      color = 'green'
-      } else if(project.deadline < now && project.completed !== 1) {
-      color = 'red'
-      } else if(project.deadline !== null && now.diffDays(project.deadline) < 7) {
-      color = 'orange'
-      }
+        var completed_0 = 0;
+        var completed_1 = 0;
+
+        if (completed < 10){
+            completed_0 = 0;
+            completed_1 = completed;
+        }
+        else
+        {
+            completed_0 = Math.floor(completed/ 10);
+            completed_1 = completed % 10;
+        }
+
+        var color = 'none';
+        if (completed===100 )
+            color='green';
+        else if (completed > 70)
+            color='yellow';
+        else
+            color='red';
+
       %>
-      <aside class="flipover dateline" status="<%= color %>">
-        <% var date = project.deadline.toString('dd-MM'); %>
-        <p class="font-oswald"><%= date[0] %></p>
 
-        <p class="font-oswald"><%= date[1] %></p>
+      <%if (completed < 100){%>
+      <aside class="flipover dateline" status="<%= color%>">
+        <p class="font-oswald"><%= completed_0 %></p>
+
+        <p class="font-oswald"><%= completed_1 %></p>
 
         <p class="font-oswald _space">&nbsp;</p>
 
-        <p class="font-oswald"><%= date[3] %></p>
+        <p class="font-oswald">%</p>
 
-        <p class="font-oswald"><%= date[4] %></p>
+        <p class="font-oswald"></p>
       </aside>
-      <% } else { %>
-      <aside class="flipover dateline >
-                           <p class=" font-oswald
-      "></p>
-      <p class="font-oswald"></p>
+      <%} else {%>
+    <aside class="flipover dateline" status="<%= color%>">
+        <p class="font-oswald">1</p>
 
-      <p class="font-oswald _space">&nbsp;</p>
+        <p class="font-oswald">0</p>
 
-      <p class="font-oswald"></p>
+        <p class="font-oswald">0</p>
 
-      <p class="font-oswald"></p>
-      </aside>
-      <% } %>
+        <p class="font-oswald">%</p>
+
+        <p class="font-oswald">%</p>
+    </aside>
+      <%}%>
     </section>
     <section class="project_crew">
       <% for(var n = 0; n < 5; n++) { %>
@@ -269,6 +281,9 @@
 <script src="js/jquery.countdown.js"></script>
 <script src="js/board-modules.js"></script>
 <script src="js/board.js"></script>
-
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://localhost:3000');
+</script>
 </body>
 </html>

@@ -29,7 +29,7 @@ function update_eta(expectedDate) {
 
   var currentDate = new Date();
 
-  $.ajax('/nextMilestone', {
+  $.ajax('/targetDate', {
     type: 'GET',
     data: {
       detailed: true
@@ -114,21 +114,13 @@ function update_clock() {
 /* BASECAMP */
 
 function refresh_basecamp_projects(animate) {
-  $.ajax('/', {
+  $.ajax('/buildTable', {
     type: 'GET',
     data: {
       detailed: true
     },
     crossDomain: true,
     success: function (projects) {
-      projects = [
-        {
-          name: 'test',
-          deadline: new Date(2014, 3, 1),
-          completed: 0.8,
-          people: []
-        }
-      ];
       $('#basecamp-projects').empty();
       var projectsTemplate = _.template($('#template-projects').html());
 
@@ -145,46 +137,11 @@ function refresh_basecamp_projects(animate) {
   });
 }
 
-function refresh_birthdays() {
-  $.ajax({
-    url: 'api/basecamp/birthdays.php',
-    crossDomain: true,
-    success: function (people) {
-      var today = XDate.today();
-
-      if (people.length > 0) {
-        $.each(people, function (i, person) {
-          var birthday = new XDate(person.birthday);
-          var upcomingBirthday = new XDate(birthday);
-          upcomingBirthday.setFullYear(today.getFullYear());
-
-          if (upcomingBirthday < today) {
-            upcomingBirthday.addYears(1);
-          }
-          person.day_count = today.diffDays(upcomingBirthday);
-          person.age = Math.floor(birthday.diffYears(today));
-        });
-
-        people.sort(function (a, b) {
-          return a.day_count - b.day_count;
-        });
-      }
-
-      $('#member_birthdays').empty();
-      var birthdaysTemplate = _.template($('#template-birthdays').html());
-      $('#member_birthdays').append(birthdaysTemplate({
-        people: people
-      }));
-    },
-  });
-}
-
 function basecamp_animation($boolean) {
   var $speed = 0;
   if ($boolean) {
     $speed = 400;
-  }
-  ;
+  }  ;
 
   $('.basecamp_project').css({
     opacity: '1'
@@ -253,6 +210,16 @@ function google_analytics_animation($boolean) {
 /* TWITTER */
 
 function refresh_twitter() {
+  socket.on('payload', function (data) {
+    console.log(data);
+    var tweetTemplate = _.template($('#template-tweet').html());
+    $(tweetTemplate({
+      data:data
+    })).prependTo('#twitter_feed');
+
+  });
+
+  /*
   $.ajax({
     url: 'api/twitter/latest.php',
     crossDomain: true,
@@ -263,5 +230,5 @@ function refresh_twitter() {
       tweetHtml = tweetHtml.replace(/([@]+[A-Za-z0-9-_]+)/g, '<span class="tweet_mention">$1</span>');
       $('#twitter_feed').empty().append(tweetHtml);
     },
-  });
+  });*/
 }

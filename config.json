@@ -1,0 +1,30 @@
+{
+  "port": 3000,
+  "auth": {
+    "type": "oauth",
+    "token": "3c393f865a4e734d035b4b2bc8940ba7d9a0f176"
+  },
+  "repos": [
+    {
+      "user": "joola",
+      "repo": "joola.io",
+      "milestone": 1
+    },
+    {
+      "user": "joola",
+      "repo": "joola.io.sdk",
+      "milestone": 1
+    },
+    {
+      "user": "joola",
+      "repo": "joola.io.analytics",
+      "milestone": 1
+    }
+  ],
+  "dueDate": {
+    "user": "joola",
+    "repo": "joola.io",
+    "milestone": 1
+  },
+  "labels": ["beacon", "cache", "core", "docs", "manage", "query", "sdk", "tests"]
+}
